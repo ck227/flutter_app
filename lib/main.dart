@@ -1,79 +1,89 @@
 import 'package:flutter/material.dart';
-import 'package:english_words/english_words.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var pressAttention = false;
     return MaterialApp(
-
       theme: ThemeData(
+        textSelectionColor: Colors.black,
         brightness: Brightness.light,
-        primaryColor: Colors.white,
-        accentColor: Colors.transparent,
+        primaryColor: Colors.red,
+        accentColor: Colors.redAccent,
       ),
-      home: RandomWords(),
+      title: '登录',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('登录'),
+        ),
+        body: new Column(
+          children: <Widget>[
+            new Container(
+              margin: const EdgeInsets.only(top: 40.0),
+              child: new Text(
+                'D-CSO',
+                style: new TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            new Container(
+              margin: const EdgeInsets.only(top: 36.0, left: 40.0, right: 40.0),
+              child: new TextField(
+                keyboardType: TextInputType.text,
+                decoration: new InputDecoration(
+                  contentPadding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+                  hintText: "用户名",
+                  hintStyle: new TextStyle(
+                    fontSize: 14.0,
+                    color: Colors.grey,
+                  ),
+                ),
+                style: new TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            new Container(
+              margin: const EdgeInsets.only(top: 36.0, left: 40.0, right: 40.0),
+              child: new TextField(
+                obscureText: true,
+                keyboardType: TextInputType.text,
+                decoration: new InputDecoration(
+                  contentPadding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+                  hintText: '密码',
+                  hintStyle: new TextStyle(
+                    fontSize: 14.0,
+                    color: Colors.grey,
+                  ),
+                ),
+                style: new TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            new Container(
+              margin: const EdgeInsets.only(top: 28.0, left: 40.0, right: 40.0),
+              width: double.infinity,
+              child: new RaisedButton(
+                padding: new EdgeInsets.all(12.0),
+                child: new Text(
+                  '登录',
+                  style: new TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+                shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+                color: Colors.redAccent,
+                onPressed: () => pressAttention = !pressAttention,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
-
-/*class RandomWordsState extends State<RandomWords> {
-  final _suggestions = <WordPair>[];
-  final _biggerFont = const TextStyle(fontSize: 18.0);
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-
-//    final wordPair = WordPair.random();
-//    return Text(wordPair.asPascalCase);
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('登录'),
-      ),
-      body: _buildSuggestions(),
-    );
-  }
-
-  Widget _buildSuggestions() {
-    return ListView.builder(
-        padding: const EdgeInsets.all(16.0),
-        // The itemBuilder callback is called once per suggested word pairing,
-        // and places each suggestion into a ListTile row.
-        // For even rows, the function adds a ListTile row for the word pairing.
-        // For odd rows, the function adds a Divider widget to visually
-        // separate the entries. Note that the divider may be difficult
-        // to see on smaller devices.
-        itemBuilder: (context, i) {
-          // Add a one-pixel-high divider widget before each row in theListView.
-          if (i.isOdd) return Divider();
-
-          // The syntax "i ~/ 2" divides i by 2 and returns an integer result.
-          // For example: 1, 2, 3, 4, 5 becomes 0, 1, 1, 2, 2.
-          // This calculates the actual number of word pairings in the ListView,
-          // minus the divider widgets.
-          final index = i ~/ 2;
-          // If you've reached the end of the available word pairings...
-          if (index >= _suggestions.length) {
-            // ...then generate 10 more and add them to the suggestions list.
-            _suggestions.addAll(generateWordPairs().take(10));
-          }
-          return _buildRow(_suggestions[index]);
-        });
-  }
-
-  Widget _buildRow(WordPair pair) {
-    return ListTile(
-      title: Text(
-        pair.asPascalCase,
-        style: _biggerFont,
-      ),
-    );
-  }
-}
-
-class RandomWords extends StatefulWidget {
-  @override
-  RandomWordsState createState() => new RandomWordsState();
-}*/
