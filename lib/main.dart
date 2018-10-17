@@ -8,67 +8,83 @@ class MyApp extends StatelessWidget {
     var pressAttention = false;
     return MaterialApp(
       theme: ThemeData(
-        textSelectionColor: Colors.black,
-        brightness: Brightness.light,
-        primaryColor: Colors.red,
-        accentColor: Colors.redAccent,
+        primaryColor: Colors.white,
       ),
-      title: '登录',
       home: Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
-          title: Text('登录'),
+          elevation: 0.5,
+          centerTitle: true,
+          title: Text(
+            '登录',
+            style: TextStyle(fontSize: 18.0, color: Colors.black),
+          ),
         ),
         body: new Column(
           children: <Widget>[
-            new Container(
-              margin: const EdgeInsets.only(top: 40.0),
-              child: new Text(
-                'D-CSO',
-                style: new TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+            new Image.asset(
+              'assets/login_logo.png',
+              height: 120.0,
             ),
             new Container(
-              margin: const EdgeInsets.only(top: 36.0, left: 40.0, right: 40.0),
+              margin: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
               child: new TextField(
-                keyboardType: TextInputType.text,
-                decoration: new InputDecoration(
-                  contentPadding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
-                  hintText: "用户名",
-                  hintStyle: new TextStyle(
-                    fontSize: 14.0,
-                    color: Colors.grey,
-                  ),
-                ),
                 style: new TextStyle(
                   color: Colors.black,
+                  fontSize: 16.0,
                 ),
+                cursorColor: Colors.darkRed,
+                keyboardType: TextInputType.text,
+                decoration: new InputDecoration(
+                    contentPadding: const EdgeInsets.only(left: 8.0),
+                    hintText: "输入用户名",
+                    hintStyle: new TextStyle(
+                      fontSize: 16.0,
+                      color: Colors.grey[600],
+                    ),
+                    border: InputBorder.none),
               ),
             ),
             new Container(
-              margin: const EdgeInsets.only(top: 36.0, left: 40.0, right: 40.0),
+              margin: const EdgeInsets.only(left: 16.0, right: 16.0, top: 10.0),
+              child: new Divider(
+                height: 1.0,
+                color: Colors.grey[600],
+              ),
+            ),
+            new Container(
+              margin: const EdgeInsets.only(top: 24.0, left: 16.0, right: 16.0),
               child: new TextField(
-                obscureText: true,
+                style: new TextStyle(
+                  color: Colors.black,
+                  fontSize: 16.0,
+                ),
+                cursorColor: Colors.darkRed,
                 keyboardType: TextInputType.text,
                 decoration: new InputDecoration(
-                  contentPadding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
                   hintText: '密码',
                   hintStyle: new TextStyle(
-                    fontSize: 14.0,
-                    color: Colors.grey,
+                    fontSize: 16.0,
+                    color: Colors.grey[600],
+//                    contentPadding: const EdgeInsets.only(left: 8.0, top: 10.0, bottom: 10.0),
                   ),
-                ),
-                style: new TextStyle(
-                  color: Colors.black,
+                  contentPadding: const EdgeInsets.only(left: 8.0),
+                  border: InputBorder.none,
                 ),
               ),
             ),
             new Container(
-              margin: const EdgeInsets.only(top: 28.0, left: 40.0, right: 40.0),
+              margin: const EdgeInsets.only(left: 16.0, right: 16.0, top: 10.0),
+              child: new Divider(
+                height: 1.0,
+                color: Colors.grey[600],
+              ),
+            ),
+            new Container(
+              margin: const EdgeInsets.only(top: 28.0, left: 16.0, right: 16.0),
               width: double.infinity,
               child: new RaisedButton(
+                highlightColor: Colors.darkRed[200],
                 padding: new EdgeInsets.all(12.0),
                 child: new Text(
                   '登录',
@@ -76,8 +92,8 @@ class MyApp extends StatelessWidget {
                     color: Colors.white,
                   ),
                 ),
-                shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-                color: Colors.redAccent,
+                shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(2.0)),
+                color: Colors.darkRed,
                 onPressed: () => pressAttention = !pressAttention,
               ),
             ),
