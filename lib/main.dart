@@ -1,105 +1,93 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
+import 'home.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
+/*class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var pressAttention = false;
-    return MaterialApp(
+    return new MaterialApp(
+      //包了这个后没有返回按钮了
       theme: ThemeData(
         primaryColor: Colors.white,
       ),
       home: Scaffold(
-        backgroundColor: Colors.white,
         appBar: AppBar(
           elevation: 0.5,
-          centerTitle: true,
           title: Text(
-            '登录',
+            '1药城',
             style: TextStyle(fontSize: 18.0, color: Colors.black),
           ),
         ),
-        body: new Column(
-          children: <Widget>[
-            new Image.asset(
-              'assets/login_logo.png',
-              height: 120.0,
-            ),
-            new Container(
-              margin: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
-              child: new TextField(
-                style: new TextStyle(
-                  color: Colors.black,
-                  fontSize: 16.0,
-                ),
-                cursorColor: Colors.darkRed,
-                keyboardType: TextInputType.text,
-                decoration: new InputDecoration(
-                    contentPadding: const EdgeInsets.only(left: 8.0),
-                    hintText: "输入用户名",
-                    hintStyle: new TextStyle(
-                      fontSize: 16.0,
-                      color: Colors.grey[600],
-                    ),
-                    border: InputBorder.none),
+        body: Center(
+          child: RaisedButton(
+            onPressed: () => Navigator.pop(context),
+            // Navigate back to first screen when tapped!
+            child: Text('Go back!'),
+          ),
+        ),
+      ),
+    );
+  }
+}*/
+
+class MainScreen extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _MainState();
+  }
+}
+
+class _MainState extends State<MainScreen> {
+  int _currentIndex = 0;
+  final List<Widget> _children = [
+    HomeScreen(Colors.cyan),
+    HomeScreen(Colors.deepOrange),
+    HomeScreen(Colors.green),
+    HomeScreen(Colors.blueGrey)
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return new MaterialApp(
+      theme: ThemeData(
+        primaryColor: Colors.darkRed,
+      ),
+      home: Scaffold(
+        appBar: AppBar(
+          elevation: 0.5,
+          backgroundColor: Colors.white,
+          title: Text(
+            '1药城',
+            style: TextStyle(fontSize: 18.0, color: Colors.black),
+          ),
+        ),
+        body: _children[_currentIndex], // new
+        bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          onTap: onTabTapped, // new
+          currentIndex: _currentIndex, // new/ this will be set when a new tab is tapped
+          items: [
+            BottomNavigationBarItem(
+              icon: new Icon(Icons.home),
+              title: new Text(
+                '首页',
               ),
             ),
-            new Container(
-              margin: const EdgeInsets.only(left: 16.0, right: 16.0, top: 10.0),
-              child: new Divider(
-                height: 1.0,
-                color: Colors.grey[600],
-              ),
+            BottomNavigationBarItem(
+              icon: new Icon(Icons.store),
+              title: new Text('店铺'),
             ),
-            new Container(
-              margin: const EdgeInsets.only(top: 24.0, left: 16.0, right: 16.0),
-              child: new TextField(
-                style: new TextStyle(
-                  color: Colors.black,
-                  fontSize: 16.0,
-                ),
-                cursorColor: Colors.darkRed,
-                keyboardType: TextInputType.text,
-                decoration: new InputDecoration(
-                  hintText: '密码',
-                  hintStyle: new TextStyle(
-                    fontSize: 16.0,
-                    color: Colors.grey[600],
-//                    contentPadding: const EdgeInsets.only(left: 8.0, top: 10.0, bottom: 10.0),
-                  ),
-                  contentPadding: const EdgeInsets.only(left: 8.0),
-                  border: InputBorder.none,
-                ),
-              ),
-            ),
-            new Container(
-              margin: const EdgeInsets.only(left: 16.0, right: 16.0, top: 10.0),
-              child: new Divider(
-                height: 1.0,
-                color: Colors.grey[600],
-              ),
-            ),
-            new Container(
-              margin: const EdgeInsets.only(top: 28.0, left: 16.0, right: 16.0),
-              width: double.infinity,
-              child: new RaisedButton(
-                highlightColor: Colors.darkRed[200],
-                padding: new EdgeInsets.all(12.0),
-                child: new Text(
-                  '登录',
-                  style: new TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-                shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(2.0)),
-                color: Colors.darkRed,
-                onPressed: () => pressAttention = !pressAttention,
-              ),
-            ),
+            BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), title: Text('购物车')),
+            BottomNavigationBarItem(icon: Icon(Icons.person), title: Text('个人'))
           ],
         ),
       ),
     );
+  }
+
+  void onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
   }
 }

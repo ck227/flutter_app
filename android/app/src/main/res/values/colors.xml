@@ -12,7 +12,8 @@
     <color name="test9">#cc9393</color>
     <color name="test10">#7f9f7f</color>-->
 
-    <color name="statusColor">#e0e0e0</color>
+    <!--<color name="statusColor">#FFF</color>-->
+    <color name="statusColor">#e1e1e1</color>
 
     <!--<color name="test">#cc7832</color>
     <color name="test2">#FFC66D</color>
