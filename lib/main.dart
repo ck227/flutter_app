@@ -1,34 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'home.dart';
-
-/*class MainScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return new MaterialApp(
-      //包了这个后没有返回按钮了
-      theme: ThemeData(
-        primaryColor: Colors.white,
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          elevation: 0.5,
-          title: Text(
-            '1药城',
-            style: TextStyle(fontSize: 18.0, color: Colors.black),
-          ),
-        ),
-        body: Center(
-          child: RaisedButton(
-            onPressed: () => Navigator.pop(context),
-            // Navigate back to first screen when tapped!
-            child: Text('Go back!'),
-          ),
-        ),
-      ),
-    );
-  }
-}*/
+import 'store.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -37,30 +10,40 @@ class MainScreen extends StatefulWidget {
   }
 }
 
+setStatusColor() async {
+  try {
+    await FlutterStatusbarcolor.setStatusBarColor(Colors.white);
+    FlutterStatusbarcolor.setStatusBarWhiteForeground(false);
+  } on TargetPlatform catch (e) {
+    debugPrint(e.toString());
+  }
+}
+
 class _MainState extends State<MainScreen> {
   int _currentIndex = 0;
   final List<Widget> _children = [
-    HomeScreen(Colors.cyan),
-    HomeScreen(Colors.deepOrange),
-    HomeScreen(Colors.green),
-    HomeScreen(Colors.blueGrey)
+    HomeScreen(),
+    StoreScreen(),
+    HomeScreen(),
+    HomeScreen()
   ];
 
   @override
   Widget build(BuildContext context) {
+    setStatusColor();
     return new MaterialApp(
       theme: ThemeData(
         primaryColor: Colors.darkRed,
       ),
       home: Scaffold(
-        appBar: AppBar(
-          elevation: 0.5,
-          backgroundColor: Colors.white,
-          title: Text(
-            '1药城',
-            style: TextStyle(fontSize: 18.0, color: Colors.black),
-          ),
-        ),
+//        appBar: AppBar(
+//          elevation: 0.5,
+//          backgroundColor: Colors.white,
+//          title: Text(
+//            '1药城',
+//            style: TextStyle(fontSize: 18.0, color: Colors.black),
+//          ),
+//        ),
         body: _children[_currentIndex], // new
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,

@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
 
 setStatusColor() async {
   try {
-    await FlutterStatusbarcolor.setStatusBarColor(Colors.statusBarColor);
+    await FlutterStatusbarcolor.setStatusBarColor(Colors.white);
     FlutterStatusbarcolor.setStatusBarWhiteForeground(false);
   } on TargetPlatform catch (e) {
     debugPrint(e.toString());
@@ -114,6 +114,7 @@ class LoginScreen extends StatelessWidget {
                 shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(2.0)),
                 color: Colors.darkRed,
                 onPressed: () {
+//                  setStatusColor();
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => MainScreen()),

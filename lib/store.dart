@@ -1,40 +1,24 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(HomeScreen());
+  runApp(StoreScreen());
 }
 
-class HomeScreen extends StatelessWidget {
+class StoreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        primaryColor: Colors.darkRed,
-      ),
       home: DefaultTabController(
         length: 3,
         child: Scaffold(
           appBar: AppBar(
-            elevation: 1.0,
             backgroundColor: Colors.white,
             bottom: TabBar(
-              isScrollable: true,
-              labelColor: Colors.darkRed,
               indicatorColor: Colors.darkRed,
-              unselectedLabelColor: Colors.grey,
-//              unselectedLabelStyle: new TextStyle(
-//                color: Colors.grey
-//              ),
               tabs: [
-                Tab(
-                  text: '首页',
-                ),
-                Tab(
-                  text: '推荐',
-                ),
-                Tab(
-                  text: '新品',
-                ),
+                Tab(icon: Icon(Icons.directions_car,color: Colors.darkRed,)),
+                Tab(icon: Icon(Icons.directions_transit,color: Colors.darkRed,)),
+                Tab(icon: Icon(Icons.directions_bike,color: Colors.darkRed,)),
               ],
             ),
             title: new Container(
@@ -43,18 +27,21 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.only(left: 12.0, right: 16.0),
               width: double.infinity,
               decoration: new BoxDecoration(
-                color: Colors.grey[200],
+                color: Colors.grey[300],
                 borderRadius: new BorderRadius.all(new Radius.circular(8.0)),
               ),
               child: new Row(
                 children: <Widget>[
                   new Icon(
                     Icons.search,
-                    color: Colors.grey[600],
+                    color: Colors.grey[700],
                   ),
                   new Text(
                     '搜索商品',
-                    style: new TextStyle(color: Colors.grey[600], fontSize: 14.0),
+                    style: new TextStyle(
+                      color: Colors.grey[700],
+                      fontSize: 14.0
+                    ),
                   )
                 ],
               ),
@@ -62,9 +49,7 @@ class HomeScreen extends StatelessWidget {
           ),
           body: TabBarView(
             children: [
-              Icon(
-                Icons.directions_car,
-              ),
+              Icon(Icons.directions_car,color: Colors.darkRed,),
               Icon(Icons.directions_transit),
               Icon(Icons.directions_bike),
             ],
