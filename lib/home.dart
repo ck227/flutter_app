@@ -27,13 +27,25 @@ class HomeScreen extends StatelessWidget {
 //              ),
               tabs: [
                 Tab(
-                  text: '首页',
-                ),
-                Tab(
                   text: '推荐',
                 ),
                 Tab(
                   text: '新品',
+                ),
+                Tab(
+                  text: '福利社',
+                ),
+                Tab(
+                  text: '限时购',
+                ),
+                Tab(
+                  text: '居家',
+                ),
+                Tab(
+                  text: '鞋包配饰',
+                ),
+                Tab(
+                  text: '服装',
                 ),
               ],
             ),

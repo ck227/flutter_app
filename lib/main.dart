@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'home.dart';
+import 'classify.dart';
 import 'store.dart';
 
 class MainScreen extends StatefulWidget {
@@ -23,6 +24,7 @@ class _MainState extends State<MainScreen> {
   int _currentIndex = 0;
   final List<Widget> _children = [
     HomeScreen(),
+    ClassifyScreen(),
     StoreScreen(),
     HomeScreen(),
     HomeScreen()
@@ -52,9 +54,11 @@ class _MainState extends State<MainScreen> {
           items: [
             BottomNavigationBarItem(
               icon: new Icon(Icons.home),
-              title: new Text(
-                '首页',
-              ),
+              title: new Text('首页'),
+            ),
+            BottomNavigationBarItem(
+              icon: new Icon(Icons.menu),
+              title: new Text('分类'),
             ),
             BottomNavigationBarItem(
               icon: new Icon(Icons.store),
