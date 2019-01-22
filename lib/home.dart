@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'homeSuggest.dart';
 
 void main() {
   runApp(HomeScreen());
@@ -12,43 +13,11 @@ class HomeScreen extends StatelessWidget {
         primaryColor: Colors.darkRed,
       ),
       home: DefaultTabController(
-        length: 3,
+        length: 7,
         child: Scaffold(
           appBar: AppBar(
             elevation: 1.0,
             backgroundColor: Colors.white,
-            bottom: TabBar(
-              isScrollable: true,
-              labelColor: Colors.darkRed,
-              indicatorColor: Colors.darkRed,
-              unselectedLabelColor: Colors.grey,
-//              unselectedLabelStyle: new TextStyle(
-//                color: Colors.grey
-//              ),
-              tabs: [
-                Tab(
-                  text: '推荐',
-                ),
-                Tab(
-                  text: '新品',
-                ),
-                Tab(
-                  text: '福利社',
-                ),
-                Tab(
-                  text: '限时购',
-                ),
-                Tab(
-                  text: '居家',
-                ),
-                Tab(
-                  text: '鞋包配饰',
-                ),
-                Tab(
-                  text: '服装',
-                ),
-              ],
-            ),
             title: new Container(
               height: 32.0,
               margin: const EdgeInsets.only(left: 16.0, right: 16.0),
@@ -71,13 +40,62 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
+
+
+            bottom: new PreferredSize(child: TabBar(
+              isScrollable: true,
+              labelColor: Colors.darkRed,
+              indicatorColor: Colors.darkRed,
+              unselectedLabelColor: Colors.black54,
+              tabs: [
+                new Container(
+                  height: 26.0,
+                  child: new Tab(text: '推荐'),
+                  padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
+                ),
+                new Container(
+                  height: 26.0,
+                  child: new Tab(text: '新品'),
+                  padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
+                ),
+                new Container(
+                  height: 26.0,
+                  child: new Tab(text: '福利社'),
+                  padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
+                ),
+                new Container(
+                  height: 26.0,
+                  padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
+                  child: new Tab(text: '限时购'),
+                ),
+                new Container(
+                  height: 26.0,
+                  child: new Tab(text: '居家'),
+                  padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
+                ),
+                new Container(
+                  height: 26.0,
+                  child: new Tab(text: '鞋包配饰'),
+                  padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
+                ),
+                new Container(
+                  height: 26.0,
+                  child: new Tab(text: '服装'),
+                  padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
+                ),
+              ],
+            ), preferredSize: new Size(double.infinity, 26.0)),
+
+
           ),
           body: TabBarView(
             children: [
-              Icon(
-                Icons.directions_car,
-              ),
+              new HomeSuggestScreen(),
               Icon(Icons.directions_transit),
+              Icon(Icons.directions_bike),
+              Icon(Icons.directions_bike),
+              Icon(Icons.directions_bike),
+              Icon(Icons.directions_bike),
               Icon(Icons.directions_bike),
             ],
           ),

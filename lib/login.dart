@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'main.dart';
 
+import 'dart:async';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -115,16 +119,54 @@ class LoginScreen extends StatelessWidget {
                 color: Colors.darkRed,
                 onPressed: () {
 //                  setStatusColor();
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => MainScreen()),
-                  );
+//                  Navigator.push(
+//                    context,
+//                    MaterialPageRoute(builder: (context) => MainScreen()),
+//                  );
+                  fetchPost();
                 },
               ),
             ),
           ],
         ),
       ),
+    );
+  }
+
+//  get() async {
+//    var httpClient = new HttpClient();
+//    var uri = new Uri.http('http://47.106.87.16:8080/zbhProject/', '/smsVerifyFront/send.html',
+//        {'loginName': '18507104251', 'type': '1'});
+//    var request = await httpClient.getUrl(uri);
+//    var response = await request.close();
+//    var responseBody = await response.transform(UTF8.decoder).join();
+//    if (response.statusCode == HttpStatus.OK) {}
+//  }
+
+  Future<Post> fetchPost() async {
+    var uri = new Uri.http('http://47.106.87.16:8080/zbhProject/', '/smsVerifyFront/send.html',
+        {'loginName': '18507104251', 'type': '1'});
+    final response = await http.get(uri);
+    if (response.statusCode == 200) {
+      // If the call to the server was successful, parse the JSON
+      return Post.fromJson(json.decode(response.body));
+    } else {
+      // If that call was not successful, throw an error.
+      throw Exception('Failed to load post');
+    }
+  }
+}
+
+class Post {
+  final int code;
+  final String msg;
+
+  Post({this.code, this.msg});
+
+  factory Post.fromJson(Map<String, dynamic> json) {
+    return Post(
+      code: json['code'],
+      msg: json['msg'],
     );
   }
 }
